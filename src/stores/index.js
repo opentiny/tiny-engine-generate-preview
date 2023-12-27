@@ -9,13 +9,3 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
-import i18n from '@opentiny/tiny-engine-i18n-host'
-import lowcode from '../lowcode/lowcode'
-import locale from './locale'
-
-i18n.lowcode = lowcode
-i18n.global.mergeLocaleMessage('zh_CN', locale.zh)
-i18n.global.mergeLocaleMessage('en_US', locale.en)
-
-export default i18n
