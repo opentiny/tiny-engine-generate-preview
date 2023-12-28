@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/tiny-engine-preview-vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@opentiny/tiny-engine-i18n-host": "^1.0.0",
     "@opentiny/vue": "^3.10.0",
+    "@opentiny/vue-icon": "^3.10.0",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.19.0",
     "vue": "^3.2.25",
@@ -22,5 +23,24 @@
     "@vitejs/plugin-vue": "^2.3.1",
     "@vitejs/plugin-vue-jsx": "^1.3.10",
     "vite": "^2.9.5"
-  }
+  },
+  "homepage": "https://opentiny.design/tiny-engine",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "opentiny",
+    "lowcode",
+    "tiny-engine",
+    "tiny-engine-preview-template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opentiny/tiny-engine-generate-preview"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-engine-generate-preview/issues"
+  },
+  "author": "OpenTiny Team",
+  "license": "MIT"
 }
