@@ -10,7 +10,9 @@
  *
  */
 
-export const routes = [
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+const routes = [
   {
     path: '/',
     redirect: '/index'
@@ -20,3 +22,8 @@ export const routes = [
     component: () => import('@/views/helloWorld.vue')
   }
 ]
+
+export default createRouter({
+  history: createWebHashHistory(),
+  routes
+})

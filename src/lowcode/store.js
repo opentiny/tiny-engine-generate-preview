@@ -10,10 +10,16 @@
  *
  */
 
-import { createRouter, createWebHashHistory } from 'vue-router'
-import { routes } from '@/lowcode/routes'
+import * as useDefinedStores from '@/stores'
 
-export default createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+const useStores = () => {
+  const stores = {}
+
+  Object.values(useDefinedStores || {}).forEach((store) => {
+    stores[store.$id] = store()
+  })
+
+  return stores
+}
+
+export { useStores }
