@@ -26,6 +26,8 @@ const createFn = (fnContent) => {
 }
 
 const globalDataHandle = dataSources.dataHandler ? createFn(dataSources.dataHandler.value) : (res) => res
+const globalErrorHandler = dataSources.errorHandler ? createFn(dataSources.errorHandler.value) : (err) => Promise.reject(err)
+const globalWillFetch = dataSources.willFetch ? createFn(dataSources.willFetch.value) : (option) => option
 
 const load = (http, options, dataSource, shouldFetch) => (params, customUrl) => {
   // 如果没有配置远程请求，则直接返回静态数据，返回前可能会有全局数据处理
@@ -56,10 +58,10 @@ const load = (http, options, dataSource, shouldFetch) => (params, customUrl) => 
 }
 
 dataSources.list.forEach((config) => {
-  const http = useHttp(globalDataHandle)
+  const http = useHttp(globalDataHandle, globalErrorHandler)
   const dataSource = { config }
 
-  dataSourceMap[config.id] = dataSource
+  dataSourceMap[config.name] = dataSource
 
   const shouldFetch = config.shouldFetch?.value ? createFn(config.shouldFetch.value) : () => true
   const willFetch = config.willFetch?.value ? createFn(config.willFetch.value) : (options) => options
@@ -78,6 +80,7 @@ dataSources.list.forEach((config) => {
   }
 
   http.interceptors.request.use(willFetch, errorHandler)
+  http.interceptors.request.use(globalWillFetch, globalErrorHandler)
   http.interceptors.response.use(dataHandler, errorHandler)
 
   if (import.meta.env.VITE_APP_MOCK === 'mock') {
